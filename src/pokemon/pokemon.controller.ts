@@ -8,45 +8,30 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('pokemon')
 export class PokemonController {
-
-  constructor(
-
-    private readonly pokemonService: PokemonService
-
-    ) {}
+  constructor(private readonly pokemonService: PokemonService) {}
 
   @Post()
-  create( @Body() createPokemonDto: CreatePokemonDto ) {
-
+  create(@Body() createPokemonDto: CreatePokemonDto) {
     return this.pokemonService.create(createPokemonDto);
-
   }
 
   @Get()
   findAll( @Query() paginationDto: PaginationDto ) {
-
     return this.pokemonService.findAll( paginationDto );
-
   }
 
-  @Get( ':term' )
-  findOne( @Param('term') term: string ) {
-
+  @Get(':term')
+  findOne(@Param('term') term: string) {
     return this.pokemonService.findOne( term );
-
   }
 
-  @Patch( ':term' )
-  update( @Param('term') term: string, @Body() updatePokemonDto: UpdatePokemonDto ) {
-
+  @Patch(':term')
+  update(@Param('term') term: string, @Body() updatePokemonDto: UpdatePokemonDto) {
     return this.pokemonService.update( term, updatePokemonDto);
-
   }
 
-  @Delete( ':id' )
-  remove( @Param( 'id', ParseMongoIdPipe ) id: string ) {
-
+  @Delete(':id')
+  remove(@Param('id', ParseMongoIdPipe ) id: string) {
     return this.pokemonService.remove( id );
-
   }
 }
